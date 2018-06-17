@@ -2,7 +2,7 @@ package com.fyber.stockportfolio.common.response.response;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Can't be abstract due to serialization
@@ -16,7 +16,7 @@ public class AbstractResponse<T> implements Serializable {
 
     /* --- Members --- */
 
-    private Collection<T> results;
+    private List<T> results;
 
     /* --- Constructor --- */
 
@@ -24,17 +24,17 @@ public class AbstractResponse<T> implements Serializable {
         results = new ArrayList<T>();
     }
 
-    public AbstractResponse(Collection<T> results) {
+    public AbstractResponse(List<T> results) {
         this.results = results;
     }
 
     /* --- Getters / Setters --- */
 
-    public Collection<T> getResults() {
+    public List<T> getResults() {
         return results;
     }
 
-    public void setResults(Collection<T> results) {
+    public void setResults(List<T> results) {
         this.results = results;
     }
 }

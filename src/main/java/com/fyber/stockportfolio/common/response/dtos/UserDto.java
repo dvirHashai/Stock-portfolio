@@ -1,10 +1,7 @@
 package com.fyber.stockportfolio.common.response.dtos;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Dvir.Hashai
@@ -16,8 +13,48 @@ public class UserDto implements Serializable {
 
     /* --- Members --- */
 
-    private int id;
-    private Collection<StockDto> stocks = new LinkedList<StockDto>();
-    private Map<String, Integer> StocksAmount = new HashMap<>();
+    private StockPortfolioDto stockPortfolioDto;
 
+    /* --- Constructors --- */
+
+    public UserDto() {
+        //this.stockPortfolioDto = new StockPortfolioDto();
+    }
+
+    public UserDto(StockPortfolioDto stockPortfolioDto) {
+        this.stockPortfolioDto = stockPortfolioDto;
+    }
+
+    /* --- Public methods --- */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDto)) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(stockPortfolioDto, userDto.stockPortfolioDto);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(stockPortfolioDto);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "stockPortfolioDto=" + stockPortfolioDto +
+                '}';
+    }
+
+    /* --- Getters / Setters --- */
+
+    public StockPortfolioDto getStockPortfolioDto() {
+        return stockPortfolioDto;
+    }
+
+    public void setStockPortfolioDto(StockPortfolioDto stockPortfolioDto) {
+        this.stockPortfolioDto = stockPortfolioDto;
+    }
 }

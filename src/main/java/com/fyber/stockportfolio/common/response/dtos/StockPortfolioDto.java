@@ -12,14 +12,20 @@ public class StockPortfolioDto implements Serializable {
     private static final long serialVersionUID = 3716842197212895084L;
 
     /* --- Private methods --- */
-    private Collection<StockDto> stocks = new LinkedList<StockDto>();
-    private Map<String, Integer> StocksAmount = new HashMap<>();
+    private List<StockDto> stocksDto ;
+    private Map<String, Integer> stocksAmountMapDto ;
 
     /* --- Constructors --- */
 
-    public StockPortfolioDto(Collection<StockDto> stocks, Map<String, Integer> stocksAmount) {
-        this.stocks = stocks;
-        StocksAmount = stocksAmount;
+
+    public StockPortfolioDto() {
+       this.stocksDto = new ArrayList<>();
+        this.stocksAmountMapDto = new HashMap<>();
+    }
+
+    public StockPortfolioDto(List<StockDto> stocks, Map<String, Integer> StocksAmountMap) {
+        this.stocksDto = stocks;
+        this.stocksAmountMapDto = StocksAmountMap;
     }
 
     @Override
@@ -27,37 +33,37 @@ public class StockPortfolioDto implements Serializable {
         if (this == o) return true;
         if (!(o instanceof StockPortfolioDto)) return false;
         StockPortfolioDto that = (StockPortfolioDto) o;
-        return Objects.equals(stocks, that.stocks) &&
-                Objects.equals(StocksAmount, that.StocksAmount);
+        return Objects.equals(stocksDto, that.stocksDto) &&
+                Objects.equals(stocksAmountMapDto, that.stocksAmountMapDto);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(stocks, StocksAmount);
+        return Objects.hash(stocksDto, stocksAmountMapDto);
     }
 
     @Override
     public String toString() {
         return "StockPortfolioDto{" +
-                "stocks=" + stocks +
-                ", StocksAmount=" + StocksAmount +
+                "stocks=" + stocksDto +
+                ", StocksAmountMap=" + stocksAmountMapDto +
                 '}';
     }
 
-    public Collection<StockDto> getStocks() {
-        return stocks;
+    public List<StockDto> getStocksDto() {
+        return stocksDto;
     }
 
-    public void setStocks(Collection<StockDto> stocks) {
-        this.stocks = stocks;
+    public void setStocksDto(List<StockDto> stocksDto) {
+        this.stocksDto = stocksDto;
     }
 
-    public Map<String, Integer> getStocksAmount() {
-        return StocksAmount;
+    public Map<String, Integer> getStocksAmountMapDto() {
+        return stocksAmountMapDto;
     }
 
-    public void setStocksAmount(Map<String, Integer> stocksAmount) {
-        StocksAmount = stocksAmount;
+    public void setStocksAmountMapDto(Map<String, Integer> stocksAmountMapDto) {
+        this.stocksAmountMapDto = stocksAmountMapDto;
     }
 }

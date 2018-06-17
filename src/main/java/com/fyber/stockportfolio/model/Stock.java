@@ -23,11 +23,19 @@ public class Stock implements Serializable {
 
     /* --- Constructors --- */
 
+    public Stock() {
+    }
+
     public Stock(String name, Double value) {
         this.name = name;
         this.value = value;
     }
-    /* --- Public methods --- */
+
+    public Stock(Stock stock){
+        this.name = stock.name;
+        this.value = stock.value;
+    }
+    /* --- Overridden methods --- */
 
     @Override
     public boolean equals(Object o) {
@@ -63,7 +71,7 @@ public class Stock implements Serializable {
     }
 
     public Double getValue() {
-        return value;
+        return this.value;
     }
 
     public void setValue(Double value) {

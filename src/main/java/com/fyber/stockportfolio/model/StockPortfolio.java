@@ -3,7 +3,7 @@ package com.fyber.stockportfolio.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Dvir.Hashai
@@ -15,58 +15,70 @@ public class StockPortfolio implements Serializable {
 
     /* --- Private methods --- */
 
-    @SerializedName("STOCK_AMOUNT")
-    private Integer amount;
+    @SerializedName("STOCKS")
+    private List<Stock> stocks ;
 
-    @SerializedName("STOCK")
-    private Stock stock;
+    @SerializedName("STOCK_AMOUNT")
+    private Map<String, Integer> stocksAmountMap ;
+
 
     /* --- Constructors --- */
 
-    public StockPortfolio(Integer amount, Stock stock) {
-        this.amount = amount;
-        this.stock = stock;
+    public StockPortfolio() {
+        this.stocks = new ArrayList<>();
+        this.stocksAmountMap = new HashMap<>();
     }
 
-    /* --- Public methods --- */
+    public StockPortfolio(List<Stock> stocks, Map<String, Integer> StocksAmountMap) {
+        this.stocks = stocks;
+        this.stocksAmountMap = StocksAmountMap;
+    }
+
+    public StockPortfolio(StockPortfolio stockPortfolio){
+        this.stocks = stockPortfolio.getStocks();
+        this.stocksAmountMap = stockPortfolio.getStocksAmountMap();
+    }
+
+   /* --- Overridden methods --- */
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof StockPortfolio)) return false;
         StockPortfolio that = (StockPortfolio) o;
-        return Objects.equals(amount, that.amount) &&
-                Objects.equals(stock, that.stock);
+        return Objects.equals(stocks, that.stocks) &&
+                Objects.equals(stocksAmountMap, that.stocksAmountMap);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(amount, stock);
+        return Objects.hash(stocks, stocksAmountMap);
     }
 
     @Override
     public String toString() {
         return "StockPortfolio{" +
-                "amount=" + amount +
-                ", stock=" + stock +
+                "stocks=" + stocks +
+                ", StocksAmountMap=" + stocksAmountMap +
                 '}';
     }
 
     /* --- Getters / Setters --- */
-    public Integer getAmount() {
-        return amount;
+
+    public List<Stock> getStocks() {
+        return stocks;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
     }
 
-    public Stock getStock() {
-        return stock;
+    public Map<String, Integer> getStocksAmountMap() {
+        return stocksAmountMap;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStocksAmountMap(Map<String, Integer> stocksAmountMap) {
+        this.stocksAmountMap = stocksAmountMap;
     }
 }

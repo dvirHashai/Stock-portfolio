@@ -13,15 +13,19 @@ public class StockDto implements Serializable {
 
     /* --- Private methods --- */
 
-    private String name;
-    private Double value;
+    private String nameDto;
+    private Double valueDto;
 
     /* --- Constructors --- */
 
-    public StockDto(String name, Double value) {
-        this.name = name;
-        this.value = value;
+    public StockDto() {
     }
+
+    public StockDto(String name, Double value) {
+        this.nameDto = name;
+        this.valueDto = value;
+    }
+
 
     /* --- Public methods --- */
 
@@ -30,37 +34,37 @@ public class StockDto implements Serializable {
         if (this == o) return true;
         if (!(o instanceof StockDto)) return false;
         StockDto stockDto = (StockDto) o;
-        return Objects.equals(name, stockDto.name) &&
-                Objects.equals(value, stockDto.value);
+        return Objects.equals(nameDto, stockDto.nameDto) &&
+                Objects.equals(valueDto, stockDto.valueDto);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, value);
+        return Objects.hash(nameDto, valueDto);
     }
 
     @Override
     public String toString() {
         return "StockDto{" +
-                "name='" + name + '\'' +
-                ", value=" + value +
+                "name='" + nameDto + '\'' +
+                ", value=" + valueDto +
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getNameDto() {
+        return nameDto;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameDto(String nameDto) {
+        this.nameDto = nameDto;
     }
 
-    public Double getValue() {
-        return value;
+    public Double getValueDto() {
+        return valueDto;
     }
 
-    public void setValue(Double value) {
-        this.value = value;
+    public void setValueDto(Double valueDto) {
+        this.valueDto = valueDto;
     }
 }

@@ -4,12 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Dvir.Hashai
  */
 
-public class user implements Serializable {
+public class User implements Serializable {
 
     /* --- Static members --- */
     private static final long serialVersionUID = 1858062350646040014L;
@@ -17,27 +18,37 @@ public class user implements Serializable {
     /* --- Private methods --- */
 
     @SerializedName("USER_ID")
-    private Integer id;
+    private UUID id;
 
     @SerializedName("STOCK_PORTFOLIO")
     private StockPortfolio stockPortfolio;
 
     /* --- Constructors --- */
 
-    public user(Integer id, StockPortfolio stockPortfolio) {
-        this.id = id;
+    public User() {
+        this.id = UUID.randomUUID();
+
+    }
+
+    public User(StockPortfolio stockPortfolio) {
+        this.id = UUID.randomUUID();
         this.stockPortfolio = stockPortfolio;
     }
 
-    /* --- Public methods --- */
+    public User(User user){
+        this.id = user.id;
+        this.stockPortfolio = user.stockPortfolio;
+    }
+
+    /* --- Overridden methods --- */
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof user)) return false;
-        user user = (user) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(stockPortfolio, user.stockPortfolio);
+        if (!(o instanceof User)) return false;
+        User User = (User) o;
+        return Objects.equals(id, User.id) &&
+                Objects.equals(stockPortfolio, User.stockPortfolio);
     }
 
     @Override
@@ -48,7 +59,7 @@ public class user implements Serializable {
 
     @Override
     public String toString() {
-        return "user{" +
+        return "User{" +
                 "id=" + id +
                 ", stockPortfolio=" + stockPortfolio +
                 '}';
@@ -56,11 +67,11 @@ public class user implements Serializable {
 
     /* --- Getters / Setters --- */
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
