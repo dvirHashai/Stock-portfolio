@@ -112,4 +112,32 @@ public class UserServiceImpl implements UserService {
                 stock.getValue() * user1.getStockPortfolio().getStocksAmountMap().get(stock.getName()))).sum();
         return currentValue;
     }
+
+    @Override
+    public UserDto updateUserPortfolio(UserDto userDto) {
+        try {
+            User user1 = Converters.convertUserDtoToUser(userDto);
+            Users users = userFileRepository.readUsersJsonFromFile();
+            if (users != null) {
+                logger.info("UserServiceImpl --> updateUserPortfolio --> users fetch successfully from file");
+                User user = users.getUsers().stream().
+                        filter(p -> p.getId().equals(user1.getId())).
+                        findFirst().get();
+                if (user != null) {
+                    logger.info("UserServiceImpl --> updateUserPortfolio --> user found");
+                    user.setStockPortfolio(user1.getStockPortfolio());
+                    User updatedUser = setStocksValueForUser(user);
+                    userFileRepository.writeUserToFile(user);
+                    return Converters.convertUserToUserDto(updatedUser);
+                }else {
+                    logger.error("UserServiceImpl --> updateUserPortfolio --> user not found");
+                }
+
+            }
+
+        } catch (IOException e) {
+            logger.error("UserServiceImpl --> updateUserPortfolio --> can't read users from file");
+        }
+        return null;
+    }
 }

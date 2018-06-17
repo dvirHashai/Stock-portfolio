@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Dvir.Hashai
@@ -21,6 +22,8 @@ public class Converters {
 
      public static User convertUserDtoToUser(UserDto userDto){
          User user = new User();
+
+         user.setId(UUID.fromString(userDto.getId()));
          user.setStockPortfolio(convertDtoToStockPortFolio(userDto.getStockPortfolioDto()));
          user.setEmail(userDto.getEmail());
         return user;

@@ -14,4 +14,7 @@ public interface UserService {
      User setStocksValueForUser(User user) throws IOException;
 
     Double getCurrentPortfolioValue(String userId);
+
+    UserDto updateUserPortfolio(UserDto userDto);
 }
+

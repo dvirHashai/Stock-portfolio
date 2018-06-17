@@ -40,7 +40,12 @@ public class UserFileRepositoryImpl extends AbstractRepository implements UserFi
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 Users users = gson.fromJson(reader, Users.class);
                 reader.close();
+                file.delete();
                 BufferedWriter writer =new BufferedWriter(new FileWriter(file));
+                User user2 = users.getUsers().stream().filter(user1 -> user.getId().equals(user.getId())).findFirst().orElse(null);
+                if (user2 != null){
+                    users.getUsers().removeIf(user1 -> user1.getId().equals(user2.getId()));
+                }
                 users.getUsers().add(user);
                 gson.toJson(users, writer);
                 writer.close();

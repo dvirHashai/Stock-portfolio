@@ -1,7 +1,7 @@
 {
   "USERS": [
     {
-      "USER_ID": "a6753325-2519-46a1-b1c1-c9eb1b7764d4",
+      "USER_ID": "a7753325-2519-46a1-b1c1-c9eb1b7764d4",
       "STOCK_PORTFOLIO": {
         "STOCKS": [
           {
@@ -15,10 +15,23 @@
               "minute": 0,
               "second": 0
             }
+          },
+          {
+            "STOCK_NAME": "verint",
+            "STOCK_VALUE": 2.4,
+            "STOCK_DATE": {
+              "year": 2018,
+              "month": 6,
+              "dayOfMonth": 17,
+              "hourOfDay": 0,
+              "minute": 0,
+              "second": 0
+            }
           }
         ],
         "STOCK_AMOUNT": {
-          "fyber": 4.0
+          "fyber": 4.0,
+          "verint": 20.0
         }
       },
       "Email": "123@gmail.com"

@@ -1,6 +1,5 @@
 package com.fyber.stockportfolio.controller;
 
-import com.fyber.stockportfolio.common.response.dtos.StockPortfolioDto;
 import com.fyber.stockportfolio.common.response.dtos.UserDto;
 import com.fyber.stockportfolio.common.response.response.AbstractResponse;
 import com.fyber.stockportfolio.service.StockService;
@@ -54,10 +53,22 @@ public class StockController {
     }
 
     @RequestMapping(value = "/updateUserStockPortfolio", method = RequestMethod.POST)
-    public AbstractResponse updateUserStockPortfolio (@RequestBody StockPortfolioDto stockPortfolioDto){
+    public AbstractResponse updateUserStockPortfolio (@RequestBody UserDto userDto){
         List response = new ArrayList();
+        UserDto updatedUser = userService.updateUserPortfolio(userDto);
+        if (updatedUser != null) {
+            logger.info("Update user portfolio successfully");
+            response.add(true);
+            response.add(updatedUser);
+            response.add(null);
+        } else {
+            logger.error("User not exist");
+            response.add(false);
+            response.add("Error - User not exist");
 
-        return new AbstractResponse(response);
+        }
+
+        return new AbstractResponse<>(response);
     }
 
     //TODO create api to receive list of stocks
