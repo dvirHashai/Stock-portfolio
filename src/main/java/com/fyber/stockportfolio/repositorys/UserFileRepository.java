@@ -1,6 +1,7 @@
 package com.fyber.stockportfolio.repositorys;
 
 import com.fyber.stockportfolio.model.User;
+import com.fyber.stockportfolio.model.Users;
 
 import java.io.IOException;
 
@@ -9,13 +10,8 @@ import java.io.IOException;
  */
 public interface UserFileRepository {
 
-    User readUsersJsonFromFile(Integer id);
-
     void writeUserToFile(User user) throws IOException;
 
-
-
-
-
+     Users readUsersJsonFromFile() throws IOException;
 
 }

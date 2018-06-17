@@ -22,14 +22,16 @@ public class Converters {
      public static User convertUserDtoToUser(UserDto userDto){
          User user = new User();
          user.setStockPortfolio(convertDtoToStockPortFolio(userDto.getStockPortfolioDto()));
+         user.setEmail(userDto.getEmail());
         return user;
     }
 
     public static UserDto convertUserToUserDto(User user){
          UserDto userDto = new UserDto();
          userDto.setStockPortfolioDto(convertStockPortfolioToDto(user.getStockPortfolio()));
+         userDto.setEmail(user.getEmail());
 
-         return null;
+         return userDto;
     }
     public static StockPortfolioDto convertStockPortfolioToDto(StockPortfolio stockPortfolio){
 
@@ -49,7 +51,8 @@ public class Converters {
     public static StockDto convertStockToStockDto(Stock stock){
          StockDto stockDto = new StockDto();
         stockDto.setNameDto(stock.getName());
-        stockDto.setValueDto(stock.getValue());
+
+
 
          return stockDto;
     }
@@ -66,7 +69,8 @@ public class Converters {
     public static Stock convertStockDtoToStock(StockDto stockDto){
          Stock stock = new Stock();
          stock.setName(stockDto.getNameDto());
-         stock.setValue(stockDto.getValueDto());
+         stock.setValue(null);
+         stock.setDate(null);
          return stock;
     }
 

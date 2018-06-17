@@ -3,6 +3,7 @@ package com.fyber.stockportfolio.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -21,19 +22,24 @@ public class Stock implements Serializable {
     @SerializedName("STOCK_VALUE")
     private Double value;
 
+    @SerializedName("STOCK_DATE")
+    private Calendar calendar;
+
     /* --- Constructors --- */
 
     public Stock() {
     }
 
-    public Stock(String name, Double value) {
+    public Stock(String name, Double value, Calendar calendar) {
         this.name = name;
         this.value = value;
+        this.calendar = calendar;
     }
 
     public Stock(Stock stock){
         this.name = stock.name;
         this.value = stock.value;
+        this.calendar = stock.calendar;
     }
     /* --- Overridden methods --- */
 
@@ -43,13 +49,14 @@ public class Stock implements Serializable {
         if (!(o instanceof Stock)) return false;
         Stock stock = (Stock) o;
         return Objects.equals(name, stock.name) &&
-                Objects.equals(value, stock.value);
+                Objects.equals(value, stock.value) &&
+                Objects.equals(calendar, stock.calendar);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, value);
+        return Objects.hash(name, value, calendar);
     }
 
     @Override
@@ -57,6 +64,7 @@ public class Stock implements Serializable {
         return "Stock{" +
                 "name='" + name + '\'' +
                 ", value=" + value +
+                ", date=" + calendar +
                 '}';
     }
 
@@ -76,5 +84,13 @@ public class Stock implements Serializable {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public Calendar getDate() {
+        return calendar;
+    }
+
+    public void setDate(Calendar date) {
+        this.calendar = date;
     }
 }

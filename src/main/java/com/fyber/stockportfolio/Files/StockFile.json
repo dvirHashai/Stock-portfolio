@@ -1,0 +1,272 @@
+{
+  "STOCKS": [
+    [
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 2.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 17,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 2.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 16,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 2.0,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 15,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 1.8,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 14,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 1.6,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 13,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 1.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 12,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "fyber",
+        "STOCK_VALUE": 1.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 11,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      }
+    ],
+    [
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 2.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 17,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 2.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 16,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 2.0,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 15,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 1.8,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 14,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 1.6,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 13,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 1.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 12,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "verint",
+        "STOCK_VALUE": 1.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 11,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      }
+    ],
+    [
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 2.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 17,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 2.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 16,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 2.0,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 15,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 1.8,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 14,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 1.6,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 13,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 1.4,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 12,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      },
+      {
+        "STOCK_NAME": "paypal",
+        "STOCK_VALUE": 1.2,
+        "STOCK_DATE": {
+          "year": 2018,
+          "month": 6,
+          "dayOfMonth": 11,
+          "hourOfDay": 0,
+          "minute": 0,
+          "second": 0
+        }
+      }
+    ]
+  ],
+  "STOCKS_INDEX": {
+    "fyber": 0,
+    "verint": 1,
+    "paypal": 2
+  },
+  "STOCKS_VALUE": {
+    "fyber": 2.4,
+    "verint": 2.4,
+    "paypal": 2.4
+  }
+}

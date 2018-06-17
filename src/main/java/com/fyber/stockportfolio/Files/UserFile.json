@@ -1,0 +1,27 @@
+{
+  "USERS": [
+    {
+      "USER_ID": "a3a333fb-0945-4e1a-978f-7cc657f367fe",
+      "STOCK_PORTFOLIO": {
+        "STOCKS": [
+          {
+            "STOCK_NAME": "fyber",
+            "STOCK_VALUE": 2.4,
+            "STOCK_DATE": {
+              "year": 2018,
+              "month": 6,
+              "dayOfMonth": 17,
+              "hourOfDay": 0,
+              "minute": 0,
+              "second": 0
+            }
+          }
+        ],
+        "STOCK_AMOUNT": {
+          "fyber": 4
+        }
+      },
+      "Email": "123@gmail.com"
+    }
+  ]
+}

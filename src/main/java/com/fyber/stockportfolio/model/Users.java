@@ -3,8 +3,8 @@ package com.fyber.stockportfolio.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Users implements Serializable {
 
     /* --- Static members --- */
-    private static final long serialVersionUID = 6096911521444225655L;
+    private static final long serialVersionUID = 4305631016981562888L;
 
     /* --- Private methods --- */
     @SerializedName("USERS")
@@ -35,8 +35,8 @@ public class Users implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Users)) return false;
-        Users users = (Users) o;
-        return Objects.equals(this.users, users.users);
+        Users users1 = (Users) o;
+        return Objects.equals(users, users1.users);
     }
 
     @Override
@@ -51,8 +51,6 @@ public class Users implements Serializable {
                 "users=" + users +
                 '}';
     }
-
-    /* --- Public methods --- */
 
     /* --- Getters / Setters --- */
 

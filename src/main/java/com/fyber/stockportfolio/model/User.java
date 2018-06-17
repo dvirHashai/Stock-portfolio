@@ -2,6 +2,7 @@ package com.fyber.stockportfolio.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,6 +24,10 @@ public class User implements Serializable {
     @SerializedName("STOCK_PORTFOLIO")
     private StockPortfolio stockPortfolio;
 
+    @SerializedName("Email")
+    @Email
+    private String email;
+
     /* --- Constructors --- */
 
     public User() {
@@ -30,14 +35,15 @@ public class User implements Serializable {
 
     }
 
-    public User(StockPortfolio stockPortfolio) {
-        this.id = UUID.randomUUID();
+    public User(StockPortfolio stockPortfolio,  String email) {
         this.stockPortfolio = stockPortfolio;
+        this.email = email;
     }
 
     public User(User user){
         this.id = user.id;
         this.stockPortfolio = user.stockPortfolio;
+        this.email = user.email;
     }
 
     /* --- Overridden methods --- */
@@ -46,22 +52,23 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
-        User User = (User) o;
-        return Objects.equals(id, User.id) &&
-                Objects.equals(stockPortfolio, User.stockPortfolio);
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(stockPortfolio, user.stockPortfolio) &&
+                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, stockPortfolio);
+        return Objects.hash(id, stockPortfolio, email);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", stockPortfolio=" + stockPortfolio +
+                "stockPortfolio=" + stockPortfolio +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -81,6 +88,14 @@ public class User implements Serializable {
 
     public void setStockPortfolio(StockPortfolio stockPortfolio) {
         this.stockPortfolio = stockPortfolio;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 
