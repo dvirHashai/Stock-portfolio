@@ -13,7 +13,7 @@ public class StockPortfolioDto implements Serializable {
 
     /* --- Private methods --- */
     private List<StockDto> stocksDto ;
-    private Map<String, Integer> stocksAmountMapDto ;
+    private Map<String, Double> stocksAmountMapDto ;
 
     /* --- Constructors --- */
 
@@ -23,7 +23,7 @@ public class StockPortfolioDto implements Serializable {
         this.stocksAmountMapDto = new HashMap<>();
     }
 
-    public StockPortfolioDto(List<StockDto> stocks, Map<String, Integer> StocksAmountMap) {
+    public StockPortfolioDto(List<StockDto> stocks, Map<String, Double> StocksAmountMap) {
         this.stocksDto = stocks;
         this.stocksAmountMapDto = StocksAmountMap;
     }
@@ -59,11 +59,11 @@ public class StockPortfolioDto implements Serializable {
         this.stocksDto = stocksDto;
     }
 
-    public Map<String, Integer> getStocksAmountMapDto() {
+    public Map<String, Double> getStocksAmountMapDto() {
         return stocksAmountMapDto;
     }
 
-    public void setStocksAmountMapDto(Map<String, Integer> stocksAmountMapDto) {
+    public void setStocksAmountMapDto(Map<String, Double> stocksAmountMapDto) {
         this.stocksAmountMapDto = stocksAmountMapDto;
     }
 }

@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 /**
@@ -51,15 +51,12 @@ public class UserServiceImpl implements UserService {
                         findFirst();
                 User user1 = matchingEmail.orElse(null);
                 if (user1 == null) {
-                    StockMarket stockMarket = stockFileRepository.getStockMarket();
-                    if (stockMarket != null) {
-                        logger.info("UserFileRepository --> UserRegister --> fetch stocks from file");
-                        User updatedUser = setStocksValueForUser(user, stockMarket);
-                        userFileRepository.writeUserToFile(updatedUser);
-                        logger.info("UserFileRepository --> UserRegister --> write user to file");
+                    User updatedUser = setStocksValueForUser(user);
+                    userFileRepository.writeUserToFile(updatedUser);
+                    logger.info("UserFileRepository --> UserRegister --> write user to file");
 
-                        return Converters.convertUserToUserDto(updatedUser);
-                    }
+                    return Converters.convertUserToUserDto(updatedUser);
+
 
                 } else {
                     logger.error("UserFileRepository --> UserRegister --> User all ready exist");
@@ -75,13 +72,44 @@ public class UserServiceImpl implements UserService {
     /* --- Public methods --- */
 
     @Override
-    public User setStocksValueForUser(User user, StockMarket stockMarket) {
-        List<Stock> newStockList = new ArrayList<>();
-        List<Stock> stocks = user.getStockPortfolio().getStocks();
-        Double fyber = stockMarket.getValueMap().get("fyber");
-        stocks.forEach(stock -> stock.setValue(stockMarket.getValueMap().get(stock.getName())));
-        stocks.forEach(stock -> stock.setDate(stockMarket.getStocks().get(stockMarket.getIndexMap().get(stock.getName())).get(0).getDate()));
-        user.getStockPortfolio().setStocks(stocks);
-        return user;
+    public User setStocksValueForUser(User user) throws IOException {
+        StockMarket stockMarket = stockFileRepository.getStockMarket();
+        if (stockMarket != null) {
+            logger.info("UserFileRepository --> UserRegister --> fetch stocks from file");
+            List<Stock> stocks = user.getStockPortfolio().getStocks();
+            stocks.forEach(stock -> stock.setValue(stockMarket.getValueMap().get(stock.getName())));
+            stocks.forEach(stock -> stock.setDate(stockMarket.getStocks().get(stockMarket.getIndexMap().get(stock.getName())).get(0).getDate()));
+            user.getStockPortfolio().setStocks(stocks);
+            return user;
+        }
+        return null;
+
+    }
+
+    @Override
+    public Double getCurrentPortfolioValue(String userId) {
+        try {
+            Users users = userFileRepository.readUsersJsonFromFile();
+            UUID uuid = UUID.fromString(userId);
+            User firstUser = users.getUsers().stream().filter(user -> user.getId().equals(uuid)).findFirst().get();
+
+
+            if (firstUser != null) {
+                return calculatedCurrentValue(firstUser);
+            }
+
+        } catch (IOException e) {
+            logger.error("UserServiceImpl --> getCurrentPortfolioValue --> can't read users from file");
+        }
+        return null;
+    }
+
+    public Double calculatedCurrentValue(User user) throws IOException {
+        User user1 = setStocksValueForUser(user);
+        List<Stock> stocks = user1.getStockPortfolio().getStocks();
+
+        double currentValue = stocks.stream().mapToDouble(stock -> (
+                stock.getValue() * user1.getStockPortfolio().getStocksAmountMap().get(stock.getName()))).sum();
+        return currentValue;
     }
 }

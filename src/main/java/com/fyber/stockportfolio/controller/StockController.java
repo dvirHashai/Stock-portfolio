@@ -63,9 +63,22 @@ public class StockController {
     //TODO create api to receive list of stocks
 
     @RequestMapping(value = "/getCurrentPortfolioValue/{userId}", method = RequestMethod.GET)
-    public AbstractResponse getCurrentPortfolioValue(@PathVariable(value = "userId") Integer userId){
+    public AbstractResponse getCurrentPortfolioValue(@PathVariable(value = "userId") String userId){
         List response = new ArrayList();
 
-        return new AbstractResponse(response);
+        Double currentValue = userService.getCurrentPortfolioValue(userId);
+        if (currentValue != null) {
+            logger.info("Fetch current value successfully");
+            response.add(true);
+            response.add(currentValue);
+            response.add(null);
+        } else {
+            logger.error("User not exist");
+            response.add(false);
+            response.add("Error - User not exist");
+
+        }
+
+        return new AbstractResponse<>(response);
     }
 }

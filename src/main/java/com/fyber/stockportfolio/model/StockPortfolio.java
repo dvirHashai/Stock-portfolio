@@ -19,7 +19,7 @@ public class StockPortfolio implements Serializable {
     private List<Stock> stocks ;
 
     @SerializedName("STOCK_AMOUNT")
-    private Map<String, Integer> stocksAmountMap ;
+    private Map<String, Double> stocksAmountMap ;
 
 
     /* --- Constructors --- */
@@ -29,7 +29,7 @@ public class StockPortfolio implements Serializable {
         this.stocksAmountMap = new HashMap<>();
     }
 
-    public StockPortfolio(List<Stock> stocks, Map<String, Integer> StocksAmountMap) {
+    public StockPortfolio(List<Stock> stocks, Map<String, Double> StocksAmountMap) {
         this.stocks = stocks;
         this.stocksAmountMap = StocksAmountMap;
     }
@@ -74,11 +74,11 @@ public class StockPortfolio implements Serializable {
         this.stocks = stocks;
     }
 
-    public Map<String, Integer> getStocksAmountMap() {
+    public Map<String, Double> getStocksAmountMap() {
         return stocksAmountMap;
     }
 
-    public void setStocksAmountMap(Map<String, Integer> stocksAmountMap) {
+    public void setStocksAmountMap(Map<String, Double> stocksAmountMap) {
         this.stocksAmountMap = stocksAmountMap;
     }
 }

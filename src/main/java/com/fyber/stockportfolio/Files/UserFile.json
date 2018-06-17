@@ -1,7 +1,7 @@
 {
   "USERS": [
     {
-      "USER_ID": "a3a333fb-0945-4e1a-978f-7cc657f367fe",
+      "USER_ID": "a6753325-2519-46a1-b1c1-c9eb1b7764d4",
       "STOCK_PORTFOLIO": {
         "STOCKS": [
           {
@@ -18,7 +18,7 @@
           }
         ],
         "STOCK_AMOUNT": {
-          "fyber": 4
+          "fyber": 4.0
         }
       },
       "Email": "123@gmail.com"
