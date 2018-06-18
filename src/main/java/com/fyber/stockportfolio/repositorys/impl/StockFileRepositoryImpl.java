@@ -18,17 +18,12 @@ import java.util.GregorianCalendar;
  * @author Dvir.Hashai
  */
 @Service
-public class StockFileRepositoryImpl extends AbstractRepository implements StockFileRepository{
+public class StockFileRepositoryImpl extends AbstractRepository implements StockFileRepository {
 
     /* --- Static members --- */
     private static final Logger logger = LoggerFactory.getLogger(StockFileRepositoryImpl.class);
 
-
-    //protected File stockFile = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\StockFile.json");
-    ClassLoader classLoader = getClass().getClassLoader();
-    File stockFile = new File(classLoader.getResource("files/StockFile.json").getFile());
-
-
+   protected File stockFile = new File(".\\StockFile.json");
 
     /* --- Private methods --- */
     private StockMarket initStocksMarket() {
@@ -63,19 +58,22 @@ public class StockFileRepositoryImpl extends AbstractRepository implements Stock
         stocks2.add(new Stock("paypal", 1.4, new GregorianCalendar(2018, 6, 12)));
         stocks2.add(new Stock("paypal", 1.2, new GregorianCalendar(2018, 6, 11)));
         stockMarket.getIndexMap().put("paypal", 2);
-       stockMarket.getValueMap().put("fyber",2.4);
-        stockMarket.getValueMap().put("verint",2.4);
-        stockMarket.getValueMap().put("paypal",2.4);
+        stockMarket.getValueMap().put("fyber", 2.4);
+        stockMarket.getValueMap().put("verint", 2.4);
+        stockMarket.getValueMap().put("paypal", 2.4);
 
 
         return stockMarket;
     }
 
 
-
     /* --- Constructors --- */
-    public StockFileRepositoryImpl() {
+    public StockFileRepositoryImpl() throws IOException {
         try {
+        if (!stockFile.exists()) {
+            stockFile.getParentFile().mkdir();
+            stockFile.createNewFile();
+        }
             this.init(stockFile, initStocksMarket());
         } catch (IOException e) {
             logger.error("can't read or write to file" + e.getMessage());
@@ -87,22 +85,15 @@ public class StockFileRepositoryImpl extends AbstractRepository implements Stock
     @Override
     public StockMarket getStockMarket() throws IOException {
 
-            try (BufferedReader reader = new BufferedReader(new FileReader(stockFile))) {
-                StockMarket stockMarket = gson.fromJson(reader, StockMarket.class);
-                reader.close();
+        try (BufferedReader reader = new BufferedReader(new FileReader(stockFile))) {
+            StockMarket stockMarket = gson.fromJson(reader, StockMarket.class);
+            reader.close();
 
-                return stockMarket;
-            }
+            return stockMarket;
+        }
 
 
     }
-
-
-
-
-
-
-
 
 
 }

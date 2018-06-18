@@ -21,5 +21,7 @@ public interface UserService {
     Users updateUsers(Users users, User updatedUser);
 
     Double calculatedCurrentValue(User user) throws IOException;
+
+    User updateUserPortfolioByMap(User oldUser, User newUser);
 }
 

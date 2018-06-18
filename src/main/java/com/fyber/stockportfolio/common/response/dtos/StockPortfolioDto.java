@@ -1,5 +1,7 @@
 package com.fyber.stockportfolio.common.response.dtos;
 
+import org.springframework.lang.Nullable;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -12,6 +14,7 @@ public class StockPortfolioDto implements Serializable {
     private static final long serialVersionUID = 3716842197212895084L;
 
     /* --- Private methods --- */
+    @Nullable
     private List<StockDto> stocksDto ;
     private Map<String, Double> stocksAmountMapDto ;
 

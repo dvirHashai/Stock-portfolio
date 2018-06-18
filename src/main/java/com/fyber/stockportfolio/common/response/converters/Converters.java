@@ -22,8 +22,7 @@ public class Converters {
 
     public static User convertUserDtoToUser(UserDto userDto)  {
         User user = new User();
-        if (userDto.getId().matches("[0-9a-f]{8}-[0-9a-f]{4}-4[0-9]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}")) {
-
+        if (userDto.getId().matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")) {
             user.setId(UUID.fromString(userDto.getId()));
         } else {
             user.setId(null);

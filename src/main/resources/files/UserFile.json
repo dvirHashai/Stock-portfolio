@@ -1,27 +1,5 @@
 {
   "USERS": [
-    {
-      "USER_ID": "a6953325-2519-46a1-b1c1-c9eb1b7764d4",
-      "STOCK_PORTFOLIO": {
-        "STOCKS": [
-          {
-            "STOCK_NAME": "fyber",
-            "STOCK_VALUE": 2.4,
-            "STOCK_DATE": {
-              "year": 2018,
-              "month": 6,
-              "dayOfMonth": 17,
-              "hourOfDay": 0,
-              "minute": 0,
-              "second": 0
-            }
-          }
-        ],
-        "STOCK_AMOUNT": {
-          "fyber": 4.0
-        }
-      },
-      "Email": "125@gmail.com"
-    }
+
   ]
 }

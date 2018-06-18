@@ -18,51 +18,41 @@ public class UserFileRepositoryImpl extends AbstractRepository implements UserFi
     /* --- Static members --- */
     private static final Logger logger = LoggerFactory.getLogger(UserFileRepositoryImpl.class);
 
-
-
     /*--- Protected  method ---*/
-   // protected File file = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\UserFile.json");
-    ClassLoader classLoader = getClass().getClassLoader();
-    File file = new File(classLoader.getResource("files/UserFile.json").getFile());
+
+   protected File file = new File(".\\userFile.json");
 
     public UserFileRepositoryImpl() throws IOException {
         try {
+            if (!file.exists()) {
+                file.getParentFile().mkdir();
+                file.createNewFile();
+            }
             this.init(file, new Users());
         } catch (IOException e) {
             logger.error("can't read or write to file" + e.getMessage());
         }
-        file.getCanonicalFile();
+
+
     }
 
     /* --- Overridden methods --- */
 
     @Override
     public void writeUserToFile(Users users) throws IOException {
-        if (users != null && users.getUsers().size() > 0){
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        if (users != null && users.getUsers().size() > 0) {
                 file.delete();
-                BufferedWriter writer =new BufferedWriter(new FileWriter(file));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
                 gson.toJson(users, writer);
                 writer.close();
-
-
-
-            }
         }
-
-
     }
 
     @Override
-    public Users readUsersJsonFromFile() throws IOException{
+    public Users readUsersJsonFromFile() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             Users users = gson.fromJson(reader, Users.class);
             return users;
         }
-
     }
-
-    /* --- Public methods --- */
-
-
 }
