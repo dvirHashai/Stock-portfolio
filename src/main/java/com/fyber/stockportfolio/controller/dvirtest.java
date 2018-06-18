@@ -1,5 +1,7 @@
 package com.fyber.stockportfolio.controller;
 
+import java.util.UUID;
+
 /**
  * @author Dvir.Hashai
  */
@@ -9,9 +11,13 @@ public class dvirtest {
         temp.getStockPortfolioDto().getStocks().add(new StockDto("viber",2.6));
         temp.getStockPortfolioDto().getStocksAmountMap().put("fyber",4);
         Gson gson = new Gson();
-        System.out.println(gson.toJson(temp));*/
+        */
+        /*URL url = getClass().getResource("UserFile.json");
+        System.out.println(url.getPath());*/
+          /*ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource("files/StockFile.json").getFile());*/
 
-
+        System.out.println(UUID.randomUUID());
 
 
     }

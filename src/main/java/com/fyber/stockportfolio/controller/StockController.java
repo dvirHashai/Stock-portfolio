@@ -2,7 +2,6 @@ package com.fyber.stockportfolio.controller;
 
 import com.fyber.stockportfolio.common.response.dtos.UserDto;
 import com.fyber.stockportfolio.common.response.response.AbstractResponse;
-import com.fyber.stockportfolio.service.StockService;
 import com.fyber.stockportfolio.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +24,7 @@ public class StockController {
 
     /* --- Services --- */
 
-    @Autowired
-    private StockService stockService;
+
 
     @Autowired
     private UserService userService;
@@ -52,7 +50,7 @@ public class StockController {
         return new AbstractResponse<>(response);
     }
 
-    @RequestMapping(value = "/updateUserStockPortfolio", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUserStockPortfolio", method = RequestMethod.PUT)
     public AbstractResponse updateUserStockPortfolio (@RequestBody UserDto userDto){
         List response = new ArrayList();
         UserDto updatedUser = userService.updateUserPortfolio(userDto);
@@ -70,8 +68,6 @@ public class StockController {
 
         return new AbstractResponse<>(response);
     }
-
-    //TODO create api to receive list of stocks
 
     @RequestMapping(value = "/getCurrentPortfolioValue/{userId}", method = RequestMethod.GET)
     public AbstractResponse getCurrentPortfolioValue(@PathVariable(value = "userId") String userId){

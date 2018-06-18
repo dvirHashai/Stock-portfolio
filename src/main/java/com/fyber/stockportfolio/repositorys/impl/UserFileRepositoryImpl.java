@@ -1,6 +1,5 @@
 package com.fyber.stockportfolio.repositorys.impl;
 
-import com.fyber.stockportfolio.model.User;
 import com.fyber.stockportfolio.model.Users;
 import com.fyber.stockportfolio.repositorys.UserFileRepository;
 import org.slf4j.Logger;
@@ -22,31 +21,27 @@ public class UserFileRepositoryImpl extends AbstractRepository implements UserFi
 
 
     /*--- Protected  method ---*/
-    protected File file = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\UserFile.json");
+   // protected File file = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\UserFile.json");
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource("files/UserFile.json").getFile());
 
-    public UserFileRepositoryImpl() {
+    public UserFileRepositoryImpl() throws IOException {
         try {
             this.init(file, new Users());
         } catch (IOException e) {
             logger.error("can't read or write to file" + e.getMessage());
         }
+        file.getCanonicalFile();
     }
 
     /* --- Overridden methods --- */
 
     @Override
-    public void writeUserToFile(User user) throws IOException {
-        if (user != null){
+    public void writeUserToFile(Users users) throws IOException {
+        if (users != null && users.getUsers().size() > 0){
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                Users users = gson.fromJson(reader, Users.class);
-                reader.close();
                 file.delete();
                 BufferedWriter writer =new BufferedWriter(new FileWriter(file));
-                User user2 = users.getUsers().stream().filter(user1 -> user.getId().equals(user.getId())).findFirst().orElse(null);
-                if (user2 != null){
-                    users.getUsers().removeIf(user1 -> user1.getId().equals(user2.getId()));
-                }
-                users.getUsers().add(user);
                 gson.toJson(users, writer);
                 writer.close();
 

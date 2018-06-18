@@ -24,7 +24,9 @@ public class StockFileRepositoryImpl extends AbstractRepository implements Stock
     private static final Logger logger = LoggerFactory.getLogger(StockFileRepositoryImpl.class);
 
 
-    protected File stockFile = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\StockFile.json");
+    //protected File stockFile = new File("C:\\Users\\dvirh\\IDE_Project\\IdeaProjects\\stockPortfolio\\src\\main\\java\\com\\fyber\\stockportfolio\\Files\\StockFile.json");
+    ClassLoader classLoader = getClass().getClassLoader();
+    File stockFile = new File(classLoader.getResource("files/StockFile.json").getFile());
 
 
 

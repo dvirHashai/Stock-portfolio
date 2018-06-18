@@ -2,6 +2,7 @@ package com.fyber.stockportfolio.service;
 
 import com.fyber.stockportfolio.common.response.dtos.UserDto;
 import com.fyber.stockportfolio.model.User;
+import com.fyber.stockportfolio.model.Users;
 
 import java.io.IOException;
 
@@ -16,5 +17,9 @@ public interface UserService {
     Double getCurrentPortfolioValue(String userId);
 
     UserDto updateUserPortfolio(UserDto userDto);
+
+    Users updateUsers(Users users, User updatedUser);
+
+    Double calculatedCurrentValue(User user) throws IOException;
 }
 

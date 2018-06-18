@@ -20,74 +20,75 @@ public class Converters {
 
     /* --- Public methods --- */
 
-     public static User convertUserDtoToUser(UserDto userDto){
-         User user = new User();
+    public static User convertUserDtoToUser(UserDto userDto)  {
+        User user = new User();
+        if (userDto.getId().matches("[0-9a-f]{8}-[0-9a-f]{4}-4[0-9]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}")) {
 
-         user.setId(UUID.fromString(userDto.getId()));
-         user.setStockPortfolio(convertDtoToStockPortFolio(userDto.getStockPortfolioDto()));
-         user.setEmail(userDto.getEmail());
+            user.setId(UUID.fromString(userDto.getId()));
+        } else {
+            user.setId(null);
+        }
+        user.setStockPortfolio(convertDtoToStockPortFolio(userDto.getStockPortfolioDto()));
+        user.setEmail(userDto.getEmail());
         return user;
     }
 
-    public static UserDto convertUserToUserDto(User user){
-         UserDto userDto = new UserDto();
-         userDto.setStockPortfolioDto(convertStockPortfolioToDto(user.getStockPortfolio()));
-         userDto.setEmail(user.getEmail());
+    public static UserDto convertUserToUserDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setStockPortfolioDto(convertStockPortfolioToDto(user.getStockPortfolio()));
+        userDto.setEmail(user.getEmail());
 
-         return userDto;
+        return userDto;
     }
-    public static StockPortfolioDto convertStockPortfolioToDto(StockPortfolio stockPortfolio){
+
+    public static StockPortfolioDto convertStockPortfolioToDto(StockPortfolio stockPortfolio) {
 
         StockPortfolioDto stockPortfolioDto = new StockPortfolioDto();
-         stockPortfolioDto.setStocksDto(convertStockListToStockListDto(stockPortfolio.getStocks()));
-         stockPortfolioDto.setStocksAmountMapDto(stockPortfolio.getStocksAmountMap());
-         return stockPortfolioDto;
+        stockPortfolioDto.setStocksDto(convertStockListToStockListDto(stockPortfolio.getStocks()));
+        stockPortfolioDto.setStocksAmountMapDto(stockPortfolio.getStocksAmountMap());
+        return stockPortfolioDto;
     }
 
-    public static StockPortfolio convertDtoToStockPortFolio(StockPortfolioDto stockPortfolioDto){
-         StockPortfolio stockPortfolio = new StockPortfolio();
-         stockPortfolio.setStocks(convertStockListDtoToStockList(stockPortfolioDto.getStocksDto()));
-         stockPortfolio.setStocksAmountMap(stockPortfolioDto.getStocksAmountMapDto());
-         return stockPortfolio;
+    public static StockPortfolio convertDtoToStockPortFolio(StockPortfolioDto stockPortfolioDto) {
+        StockPortfolio stockPortfolio = new StockPortfolio();
+        stockPortfolio.setStocks(convertStockListDtoToStockList(stockPortfolioDto.getStocksDto()));
+        stockPortfolio.setStocksAmountMap(stockPortfolioDto.getStocksAmountMapDto());
+        return stockPortfolio;
     }
 
-    public static StockDto convertStockToStockDto(Stock stock){
-         StockDto stockDto = new StockDto();
+    public static StockDto convertStockToStockDto(Stock stock) {
+        StockDto stockDto = new StockDto();
         stockDto.setNameDto(stock.getName());
 
 
-
-         return stockDto;
+        return stockDto;
     }
 
-    public static List<StockDto>  convertStockListToStockListDto(List<Stock> stocks){
+    public static List<StockDto> convertStockListToStockListDto(List<Stock> stocks) {
         List<StockDto> stockDtos = new ArrayList<>();
-        for (Stock stock: stocks) {
+        for (Stock stock : stocks) {
             stockDtos.add(convertStockToStockDto(stock));
         }
 
         return stockDtos;
     }
 
-    public static Stock convertStockDtoToStock(StockDto stockDto){
-         Stock stock = new Stock();
-         stock.setName(stockDto.getNameDto());
-         stock.setValue(null);
-         stock.setDate(null);
-         return stock;
+    public static Stock convertStockDtoToStock(StockDto stockDto) {
+        Stock stock = new Stock();
+        stock.setName(stockDto.getNameDto());
+        stock.setValue(null);
+        stock.setDate(null);
+        return stock;
     }
 
-    public static List<Stock> convertStockListDtoToStockList(List<StockDto> stockDtos){
-         List<Stock> stocks = new ArrayList<>();
+    public static List<Stock> convertStockListDtoToStockList(List<StockDto> stockDtos) {
+        List<Stock> stocks = new ArrayList<>();
         for (StockDto stockDto : stockDtos) {
             stocks.add(convertStockDtoToStock(stockDto));
         }
         return stocks;
 
     }
-
-
-
 
 
 }

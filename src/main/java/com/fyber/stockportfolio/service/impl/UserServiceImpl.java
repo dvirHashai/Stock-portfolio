@@ -52,12 +52,10 @@ public class UserServiceImpl implements UserService {
                 User user1 = matchingEmail.orElse(null);
                 if (user1 == null) {
                     User updatedUser = setStocksValueForUser(user);
-                    userFileRepository.writeUserToFile(updatedUser);
+                    usersFromFile.getUsers().add(updatedUser);
+                    userFileRepository.writeUserToFile(usersFromFile);
                     logger.info("UserFileRepository --> UserRegister --> write user to file");
-
                     return Converters.convertUserToUserDto(updatedUser);
-
-
                 } else {
                     logger.error("UserFileRepository --> UserRegister --> User all ready exist");
                 }
@@ -68,8 +66,6 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-
-    /* --- Public methods --- */
 
     @Override
     public User setStocksValueForUser(User user) throws IOException {
@@ -99,45 +95,67 @@ public class UserServiceImpl implements UserService {
             }
 
         } catch (IOException e) {
-            logger.error("UserServiceImpl --> getCurrentPortfolioValue --> can't read users from file");
+            logger.error("UserServiceImpl --> getCurrentPortfolioValue --> can't read users from file" + e.getMessage());
         }
         return null;
-    }
-
-    public Double calculatedCurrentValue(User user) throws IOException {
-        User user1 = setStocksValueForUser(user);
-        List<Stock> stocks = user1.getStockPortfolio().getStocks();
-
-        double currentValue = stocks.stream().mapToDouble(stock -> (
-                stock.getValue() * user1.getStockPortfolio().getStocksAmountMap().get(stock.getName()))).sum();
-        return currentValue;
     }
 
     @Override
     public UserDto updateUserPortfolio(UserDto userDto) {
         try {
             User user1 = Converters.convertUserDtoToUser(userDto);
-            Users users = userFileRepository.readUsersJsonFromFile();
-            if (users != null) {
-                logger.info("UserServiceImpl --> updateUserPortfolio --> users fetch successfully from file");
-                User user = users.getUsers().stream().
-                        filter(p -> p.getId().equals(user1.getId())).
-                        findFirst().get();
-                if (user != null) {
-                    logger.info("UserServiceImpl --> updateUserPortfolio --> user found");
-                    user.setStockPortfolio(user1.getStockPortfolio());
-                    User updatedUser = setStocksValueForUser(user);
-                    userFileRepository.writeUserToFile(user);
-                    return Converters.convertUserToUserDto(updatedUser);
-                }else {
-                    logger.error("UserServiceImpl --> updateUserPortfolio --> user not found");
+            if (user1.getId() != null) {
+                logger.info("UserServiceImpl --> updateUserPortfolio --> UUID is valid");
+                Users users = userFileRepository.readUsersJsonFromFile();
+                if (users != null) {
+                    logger.info("UserServiceImpl --> updateUserPortfolio --> users fetch successfully from file");
+                    User user = users.getUsers().stream().
+                            filter(p -> p.getId().equals(user1.getId())).
+                            findFirst().get();
+                    if (user != null) {
+                        logger.info("UserServiceImpl --> updateUserPortfolio --> user found");
+                        user.setStockPortfolio(user1.getStockPortfolio());
+                        User updatedUser = setStocksValueForUser(user);
+                        Users usersToSave = updateUsers(users, updatedUser);
+                        userFileRepository.writeUserToFile(usersToSave);
+                        return Converters.convertUserToUserDto(updatedUser);
+                    } else {
+                        logger.error("UserServiceImpl --> updateUserPortfolio --> user not found");
+                    }
+
+
+                } else {
+                    logger.error("UserServiceImpl --> updateUserPortfolio --> users not read successfully from file");
                 }
 
+
+            }else {
+                logger.error("UserServiceImpl --> updateUserPortfolio --> UUID is not valid");
             }
 
         } catch (IOException e) {
             logger.error("UserServiceImpl --> updateUserPortfolio --> can't read users from file");
+        } catch (IllegalArgumentException e) {
+            logger.error("UserServiceImpl --> updateUserPortfolio --> " + e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public Users updateUsers(Users users, User updatedUser) {
+        if (users != null && users.getUsers().size() > 0 && updatedUser != null) {
+            User user = users.getUsers().stream().filter(user1 -> user1.getId().equals(updatedUser.getId())).findFirst().get();
+            user.setStockPortfolio(updatedUser.getStockPortfolio());
+        }
+        return users;
+    }
+
+    @Override
+    public Double calculatedCurrentValue(User user) throws IOException {
+        User user1 = setStocksValueForUser(user);
+        List<Stock> stocks = user1.getStockPortfolio().getStocks();
+        double currentValue = stocks.stream().mapToDouble(stock -> (
+                stock.getValue() * user1.getStockPortfolio().getStocksAmountMap().get(stock.getName()))).sum();
+        return currentValue;
     }
 }
