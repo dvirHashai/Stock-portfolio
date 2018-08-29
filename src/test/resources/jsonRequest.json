@@ -1,0 +1,19 @@
+{
+  "id":"12ea04de-eed4-4ce9-87d5-838b59daa0d4",
+  "email":"19@gmail.com",
+  "stockPortfolioDto":
+  {
+    "stocksDto":
+    [
+      {"name":"fyber"},
+      {"name":"verivt"}
+    ],
+
+    "stocksAmountMapDto":
+    {
+      "fyber":7,
+      "verint":30
+    }
+  }
+
+}
