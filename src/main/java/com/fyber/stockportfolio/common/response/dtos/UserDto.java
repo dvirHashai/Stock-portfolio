@@ -22,7 +22,7 @@ public class UserDto implements Serializable {
     /* --- Constructors --- */
 
     public UserDto() {
-
+    this.stockPortfolioDto = new StockPortfolioDto();
     }
 
     public UserDto(String id, @Email String email, StockPortfolioDto stockPortfolioDto) {
