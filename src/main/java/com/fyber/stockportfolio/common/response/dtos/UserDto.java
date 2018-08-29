@@ -25,8 +25,11 @@ public class UserDto implements Serializable {
 
     }
 
-
-
+    public UserDto(String id, @Email String email, StockPortfolioDto stockPortfolioDto) {
+        this.id = id;
+        this.email = email;
+        this.stockPortfolioDto = stockPortfolioDto;
+    }
     /* --- Public methods --- */
 
     @Override

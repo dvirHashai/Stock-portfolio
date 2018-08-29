@@ -69,25 +69,6 @@ public class StockController {
         return new AbstractResponse<>(response);
     }
 
-   /* @RequestMapping(value = "/updateUserStockPortfolioByMap", method = RequestMethod.POST)
-    public AbstractResponse updateUserStockPortfolioByMap (@RequestBody StockContainer userMAP){
-        List response = new ArrayList();
-        UserDto User = userService.updateUserPortfolioByMap(userMAP);
-        if (User != null) {
-            logger.info(" user update the portfolio by list successfully");
-            response.add(true);
-            response.add(User);
-            response.add(null);
-        } else {
-            logger.error("User not exist");
-            response.add(false);
-            response.add("Error - User not exist");
-
-        }
-
-        return new AbstractResponse<>(response);
-    }
-*/
     @RequestMapping(value = "/getCurrentPortfolioValue/{userId}", method = RequestMethod.GET)
     public AbstractResponse getCurrentPortfolioValue(@PathVariable(value = "userId") String userId){
         List response = new ArrayList();

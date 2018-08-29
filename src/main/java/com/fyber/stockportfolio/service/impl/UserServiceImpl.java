@@ -131,9 +131,7 @@ public class UserServiceImpl implements UserService {
                 Users users = userFileRepository.readUsersJsonFromFile();
                 if (users != null) {
                     logger.info("UserServiceImpl --> updateUserPortfolio --> users fetch successfully from file");
-                    User user = users.getUsers().stream().
-                            filter(p -> p.getId().equals(user1.getId())).
-                            findFirst().get();
+                    User user = users.getUsers().stream().filter(p -> p.getId().equals(user1.getId())).findFirst().get();
                     if (user != null) {
                         logger.info("UserServiceImpl --> updateUserPortfolio --> user found");
                         if (user1.getStockPortfolio().getStocks() != null && user1.getStockPortfolio().getStocks().size() > 0) {

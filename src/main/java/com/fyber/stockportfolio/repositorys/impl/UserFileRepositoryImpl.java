@@ -22,7 +22,7 @@ public class UserFileRepositoryImpl extends AbstractRepository implements UserFi
 
    protected File file = new File(".\\userFile.json");
 
-    public UserFileRepositoryImpl() throws IOException {
+    public UserFileRepositoryImpl() {
         try {
             if (!file.exists()) {
                 file.getParentFile().mkdir();
